@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export const useFetch = (url) => {
+export const useFetch = (url, _body) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  //useRef used here to resolve the infinite loop problem
+  //useCallback is for functions and useRef for objects and arrays
+  const body = useRef(_body);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,6 +26,6 @@ export const useFetch = (url) => {
       }
     };
     fetchData();
-  }, [url]);
+  }, [url, body]);
   return { data, loading, error };
 };

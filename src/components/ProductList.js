@@ -4,7 +4,7 @@ import Loading from "../assets/loading.gif";
 
 export const ProductList = () => {
   const [url, setUrl] = useState("http://localhost:8000/products/");
-  const { data: products, loading, error } = useFetch(url);
+  const { data: products, loading, error } = useFetch(url, { content: "ABC" });
   /*  
   const [products, setProducts] = useState([]);
   const fetchProducts = useCallback(async () => {
